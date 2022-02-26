@@ -24,7 +24,6 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-    target: '#app',
     files: {
 			assets: 'static',
 			lib: 'src/lib',
@@ -37,7 +36,6 @@ const config = {
 			resolve: {
 				alias: {
 					$stores: path.resolve('./src/lib/stores'),
-					//$api: path.resolve('./src/routes/api'),
 					$components: path.resolve('./src/lib/components')
 				}
 			},
