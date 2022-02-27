@@ -11,7 +11,7 @@
 </script>
 
 <script lang="ts">
-  import { browser } from '$app/env'
+  //import { browser } from '$app/env'
   import Nav from '$components/Nav'
   import '@fontsource/source-sans-pro/400.css'
   import '@fontsource/source-sans-pro/600.css'
@@ -19,13 +19,12 @@
   import '../global/sass/main.sass'
 
   export let key: string
-	//let main
 
-  console.log(key, browser)
+  $: console.log('URI:', key)
 </script>
 
 <div class="wrapper">
-  <Nav {key} />
+  <Nav active={key} />
   <div class="content">
     <slot />
   </div>
