@@ -1,39 +1,21 @@
-<script context="module" lang="ts">
-  import type { Load } from '@sveltejs/kit'
-	export const load: Load = async ({ url }) => {
-    return {
-      props: {
-        key: url.pathname
-			},
-			stuff: { page: url.pathname }
-		};
-	};
-</script>
-
 <script lang="ts">
-  //import { browser } from '$app/env'
-  import Nav from '$components/Nav'
-  import '@fontsource/source-sans-pro/400.css'
-  import '@fontsource/source-sans-pro/600.css'
-  import '../global/sass/_layout.sass'
-  import '../global/sass/main.sass'
-
-  export let key: string
-
-  $: console.log('URI:', key)
+  import { ThemeProvider, NotificationProvider, Header, HeaderLeft, HeaderLogo, HeaderNav, HeaderNavItem } from 'sveltekit-components'
+  import { HomeIcon } from 'svelte-feather-icons'
+  import 'sveltekit-components/sass/main.sass'
 </script>
 
-<div class="wrapper">
-  <Nav active={key} />
-  <div class="content">
-    <slot />
-  </div>
-</div>
+<ThemeProvider fromSystem />
+<NotificationProvider duration={3000} position="top-right" />
+<Header isSticky>
+  <HeaderLeft>
+    <HeaderLogo>
+      <HomeIcon size="32" />
+    </HeaderLogo>
+    <HeaderNav>
+      <HeaderNavItem href="/" title="Home" />
+      <HeaderNavItem href="/about" title="About" />
+    </HeaderNav>
+  </HeaderLeft>
+</Header>
 
-<style lang="sass" global>
-  .wrapper
-    overflow-y: auto
-    -webkit-overflow-scrolling: touch
-    .content
-      margin: 2rem
-</style>
+<slot />

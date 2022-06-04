@@ -1,17 +1,20 @@
 import adapter from '@sveltejs/adapter-auto'
+import vercel from '@sveltejs/adapter-vercel'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
-import path from 'path'
+import { resolve } from 'path'
 import preprocess from 'svelte-preprocess'
+import { directives } from './directives.config.js'
+
+const rootDomain = process.env["VITE_DOMAIN"]
+const dev = process.env.NODE_ENV === 'development'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
-	// for more information about preprocessors
 	preprocess: preprocess({
 		sass: {
 			includePaths: ['src'],
-      prependData: '@import "src/global/sass/base/_variables.sass"',
+      prependData: '@import "src/lib/sass/main.sass"',
       renderSync: true
 		},
     postcss: {
@@ -23,7 +26,11 @@ const config = {
   }),
 
 	kit: {
-		adapter: adapter(),
+		adapter: dev ? adapter() : vercel(),
+    csp: {
+			mode: 'auto',
+			directives: directives(dev, rootDomain)
+    },
     files: {
 			assets: 'static',
 			lib: 'src/lib',
@@ -32,15 +39,18 @@ const config = {
 			template: 'src/app.html',
 			hooks: 'src/hooks'
 		},
+    floc: dev,
     vite: {
 			resolve: {
 				alias: {
-					$stores: path.resolve('./src/lib/stores'),
-					$components: path.resolve('./src/lib/components')
+          $lib: resolve('src/lib'),
+					$stores: resolve('./src/lib/stores'),
+          $types: resolve('src/lib/types'),
+					$components: resolve('./src/lib/components')
 				}
 			},
 		}
 	}
-};
+}
 
-export default config;
+export default config

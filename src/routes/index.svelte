@@ -1,20 +1,25 @@
 <script lang="ts">
-  import { Button } from '$components/Button'
-  import { github, externalLinkSquare } from 'svelte-awesome/icons'
+  import { Content, Hero, Section, Button, notification } from 'sveltekit-components'
+  
+  const notify = () => {
+    console.log('clicked!')
+    notification.add({
+      title: 'Example Notification',
+      description: 'Click here to read more about the project!',
+      href: '/about',
+      closable: true
+    })
+  }
+
 </script>
 
-<h1>Welcome to SvelteKit Starter!</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<div class="buttons">
-  <Button  url="/about" title="Website" icon={externalLinkSquare} />
-  <Button  url="https://github.com/mirkoschubert/sveltekit-starter" title="Github" icon={github} type="ghost" />
-</div>
-
-<style lang="sass">
-  .buttons
-    display: flex
-
-    :global(.btn):first-child
-      margin-right: 1rem
-</style>
+<Content>
+  <Hero image="https://picsum.photos/id/1033/1440/900">
+    <h1>Sveltekit Starter</h1>
+    <h2 class="subheading">An opinionated Starter Boilerplate with Sveltekit Components</h2>
+  </Hero>
+  <Section>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad corrupti eaque culpa repellendus. Libero, quas aspernatur repellendus necessitatibus ea magni illum nobis est et at rem ratione ipsam delectus similique.</p>
+    <Button on:click={() => notify()}>Click me!</Button>
+  </Section>
+</Content>

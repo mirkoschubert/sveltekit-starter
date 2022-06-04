@@ -13,12 +13,14 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.58",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "autoprefixer": "^10.4.2",
     "cssnano": "^5.0.17",
     "cssnano-preset-default": "^5.1.12",
+    "dotenv": "^16.0.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
@@ -30,14 +32,19 @@
     "sass": "^1.49.9",
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.6",
+    "svelte-feather-icons": "^4.0.0",
+    "svelte-highlight": "^6.0.1",
+    "svelte-loader": "^3.1.3",
     "svelte-preprocess": "^4.10.1",
+    "svelte-seo": "^1.4.1",
+    "sveltekit-components": "^0.2.2",
     "tslib": "^2.3.1",
     "typescript": "~4.5.4",
     "vite": "^2.8.4"
   },
   "type": "module",
   "dependencies": {
-    "@fontsource/source-sans-pro": "^4.5.3",
-    "svelte-awesome": "^2.4.4"
+    "@fontsource/source-code-pro": "^4.5.9",
+    "@fontsource/source-sans-pro": "^4.5.3"
   }
 }
